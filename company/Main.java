@@ -1,38 +1,33 @@
 package com.company;
-import java.util.ArrayList;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.*;
+import java.util.Arrays;
 
 public class Main {
 
-    public static void main(String[] args) {
 
-        HashSet set = new HashSet();
-        set.add("Руддщ");
-        set.add("Hello");
-        set.add("World");
-        set.add("Summer");
+    public static void main(String[] args) throws Throwable {
 
-        set.print();
+        Class<TestMath> c = TestMath.class;
+        Class<TestArrayList> arr = TestArrayList.class;
+        Class<TestMap> m = TestMap.class;
+        Class<TestList> d = TestList.class;
 
-        set.remove("Hello");
-        set.remove("wwefwegwe");
+        myThread.load(c);
+        myThread.load(arr);
+        myThread.load(m);
+        myThread.load(d);
 
-        set.print();
+        int N = Integer.getInteger(args[0]);
 
+        myThread[] threads = new myThread[N];
 
-        HashMap map = new HashMap();
-        map.put(132,"Руддщ");
-        map.put(54,"Hello");
-        map.put(656,"World");
-        map.put(1,"Summer");
+        for (int i = 0; i < N; i++){
+          threads[i] = new myThread("thread " + i);
+        }
 
-        set.print();
-
-        map.remove(234234);
-
-        map.print();
-
-
-
+        for (Thread t : threads){
+             t.start();
+        }
     }
-
 }
